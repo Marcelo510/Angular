@@ -1,0 +1,6 @@
+class MostlyFluidController{
+	constructor($scope){
+		var ctrl = this;
+		ctrl.name="mostly-fluid-controller";
+	}
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Angular App</title>
+		<!-- librerias basicas -->
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+			<script src="./libraries/jquery/jquery.js"></script>
+			<script src="./libraries/propper/propper.js"></script><!-- require JQuery -->
+			<script src="./libraries/bootstrap/bootstrap.js"></script><!-- require JQuery -->
+			<link rel="stylesheet" href="./libraries/bootstrap/bootstrap.css">
+			<link rel="stylesheet" href="./libraries/bootstrap/bootstrap-editor.css">
+		<!-- fin de librerias basicas -->
+		<!-- materialize scripts -->
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+			<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+		<!-- fin de materialize scripts -->
+		<!-- componentes mios -->
+			<!-- side bar nav -->
+			<link rel="stylesheet" href="./app/side-nav-bar/side-nav-bar.css"></script>
+			<script src="./app/side-nav-bar/side-nav-bar.controller.js"></script>
+			<!-- toast -->
+			<link rel="stylesheet" href="./app/toast/toast.css"></script>
+			<script src="./app/toast/toast.controller.js"></script>
+			<script src="./app/toast/toaster-tester.js"></script>
+			<!-- data table -->
+			<script src="./app/data-table/data-table.js"></script>
+		<!-- fin de componentes mios -->
+		<!-- librerias -->
+			<script src="./libraries/ocLazyLoader/ocLazyLoader.js"></script><!-- require JQuery -->
+		<!-- fin librerias -->
+		<script src="./app.js"></script>
+		
+	</head>
+	<!-- con ng-app le digo que modulo es el que manda aca para cargarle la configuracion y si despues quiero controladores-->
+	<body ng-app="myApp">
+		<!-- con ng-controller le digo que controlador del modulo aplica para este espacio en especifico por si quiero usar funciones o variables -->
+		<div ng-controller="AppController">
+			<!-- todo lo que dice md son componentes de la libreria material que son cosas ya hechas que se ven bonitas -->
+			<md-nav-bar
+				md-no-ink-bar="disableInkBar"
+				md-selected-nav-item="currentNavItem"
+				nav-bar-aria-label="navigation links">
+				<md-nav-item md-nav-click="click('mostly-fluid')" name="Mostly Fluid">
+					Mostly Fluid
+				</md-nav-item>
+				<md-nav-item md-nav-click="click('column-drop')" name="Column Drop">
+					Column Drop
+				</md-nav-item>
+				<md-nav-item md-nav-click="click('layout-shifter')" name="Layout Shifter">
+					Layout Shifter
+				</md-nav-item>
+			</md-nav-bar>
+			<!-- aca se cargan las vistas furiosas -->
+			<side-nav-bar></side-nav-bar>
+			<div ng-view></div>
+		</div>
+		
+			<toast></toast>
+	</body>
+	
+</html>

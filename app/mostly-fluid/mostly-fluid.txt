@@ -1,0 +1,2 @@
+let mostlyFluidModule = angular.module('mostly-fluid', []);
+mostlyFluidModule.controller('MostlyFluidController', MostlyFluidController);

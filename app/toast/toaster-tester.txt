@@ -1,0 +1,44 @@
+class ToasterTester{
+	constructor($scope){
+		$scope.toggleSidenav = buildToggler('closeEventsDisabled');
+		$scope.user = {
+			title: ''
+		};
+		
+		$scope.dataTable1 = [
+			{
+				ID: 1,
+				Name: "Pablo",
+				Lastname: "Iglesias",
+			},
+			{
+				ID: 2,
+				Name: "Pepe",
+				Lastname: "Argento",
+			}
+		];
+		
+		$scope.dataTable2 = [
+			{
+				ID: 1,
+				Name: "Pablo",
+				Enterprise: "ANSES",
+			},
+			{
+				ID: 2,
+				Name: "Pepe",
+				Enterprise: "ITOeste",
+			}
+		];
+		
+		$scope.showSimpleToast = function(text, position){
+			window.showSimpleToast(text, position);
+		}
+		
+		function buildToggler(componentId) {
+			return function() {
+				$mdSidenav(componentId).toggle();
+			};
+		}
+	}
+}

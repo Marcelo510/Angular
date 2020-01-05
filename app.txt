@@ -1,0 +1,173 @@
+//para crear una especie de privacidad cosmica y que no se use las variables afuera de este codigo se declara todo en una funcion y se corre
+(function() {
+	'use strict';
+	//declaro que la aplicacion principal va a ser un modulo grandecito y va a tener ngRoute, material, messages y lazyload porq la wea daba para que tenga tanta intensidad
+	let app = angular.module("myApp", ["ngRoute", 'ngMaterial', 'ngMessages', 'oc.lazyLoad']);
+	//aca se configuran las caracteristicas generales del modulo, asi q todo lo que tenga q ver con configuraciones lo vas a tener que usar aca generalmente, es privado del modulo y solo es para definirlo mejor... como un back del modulo
+	app.config(function($routeProvider, $mdThemingProvider, $ocLazyLoadProvider) {
+
+		//funcion q le da colores rancios a la wea cosmica(menos a las secciones... eso fui yo jeje)
+		ApplyTheme($mdThemingProvider);
+		// funcion que define los js a cargar por cada componente de forma asyncrona y bonita para q no reviente la memoria
+		LazyLoader($ocLazyLoadProvider);
+		// funcion que define los ruteos magicos
+		Route($routeProvider, $ocLazyLoadProvider);
+	});
+	
+	
+	
+	
+	//controladores con la ruta para hacer los include de la css cosmica, se podia hacer de otra forma pero es para mostrar q vos podes usar un controlador que se aplique a todo el html del ruteo, a veces tira crasheito porq es asyncrono pero no hay pedo porq es nueva la wea y pasa
+	app.controller('RouteMostlyFluidController', function($scope){
+		$scope.componentpaths = './app/mostly-fluid';
+	});
+
+	app.controller('RouteColumnDropController', function($scope){
+		$scope.componentpaths = './app/column-drop';
+	});
+
+	app.controller('RouteLayoutShifterController', function($scope){
+		$scope.componentpaths = './app/layout-shifter';
+	});
+
+	//controlador de la aplicacion... como lo unico general son los botones del navegador solo le defini una funcion click que maneje esa wea
+	app.controller('AppController', ['$scope', '$location', '$timeout', function($scope, $location, $timeout){
+		$scope.click = function(dir){
+			$location.url(dir);
+		}
+	}]);
+	
+	
+	
+	
+	
+	
+	//llamado a componentes de la aplicacion general
+
+		// side nav bar
+			app.controller('SideNavBarController', SideNavBarController);
+			
+			app.component('sideNavBar', {
+				controller: 'SideNavBarController',
+				templateUrl: './app/side-nav-bar/side-nav-bar.html'
+			});
+		//fin side nav bar
+		
+		// toast
+			app.controller('ToastController', ToastController);
+			
+			app.component('toast', {
+				controller: 'ToastController',
+				templateUrl: './app/toast/toast.html'
+			});
+		//fin toast
+		
+		// datatable
+			app.controller('ToasterTester', ToasterTester);
+			
+			app.component('toasterTester', {
+				bindings: {
+					"ticket": '=',
+				},
+				controller: 'ToasterTester',
+				template: `<md-content md-theme="docs-dark" layout-padding>
+				<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+					<md-input-container>
+						<label>{{$ctrl.ticket}}</label>
+						<input ng-model="user.title">
+					</md-input-container>
+				</section>
+				<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+					<md-button class="md-raised" ng-click="showSimpleToast(user.title, 'top left')">Top Left</md-button>
+					<md-button class="md-raised" ng-click="showSimpleToast(user.title, 'top right')">Top Right</md-button>
+				</section>
+				<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+					<md-button class="md-raised" ng-click="showSimpleToast(user.title, 'bottom left')">Bottom Left</md-button>
+					<md-button class="md-raised" ng-click="showSimpleToast(user.title, 'bottom right')">Bottom Right</md-button>
+				</section>
+			</md-content>`
+			});
+		//fin datatable
+	//fin de llamado a componentes de la aplicacion general
+	
+	
+	
+	
+	
+	
+	//funciones del controlador principal
+	function ApplyTheme($mdThemingProvider){
+		$mdThemingProvider.theme('default')
+		.primaryPalette('cyan')
+		.backgroundPalette('light-blue');
+	}
+	
+	function LazyLoader($ocLazyLoadProvider){
+		$ocLazyLoadProvider.config({
+			//sobre que modulo se carga el paquete
+			loadedModules: ['myApp'], modules: [
+				{
+					//nombre del paquetito
+					name: 'layout-shifter',
+					//urls de archivos
+					files: ['./app/layout-shifter/layout-shifter.controller.js', './app/layout-shifter/layout-shifter.js'],
+					//define que estos archivos tienen que ser cargados en ese orden(si no te importa el orden le pones false y se carga todo asyncrono y furioso incluso entre ellos mismos)
+                    serie: true
+				},
+				{
+					//nombre del paquetito
+					name: 'column-drop',
+					//urls de archivos
+					files: ['./app/column-drop/column-drop.controller.js', './app/column-drop/column-drop.js'],
+					//define que estos archivos tienen que ser cargados en ese orden(si no te importa el orden le pones false y se carga todo asyncrono y furioso incluso entre ellos mismos)
+                    serie: true
+				},
+				{
+					//nombre del paquetito
+					name: 'mostly-fluid',
+					//urls de archivos
+					files: ['./app/mostly-fluid/mostly-fluid.controller.js', './app/mostly-fluid/mostly-fluid.js'],
+					//define que estos archivos tienen que ser cargados en ese orden(si no te importa el orden le pones false y se carga todo asyncrono y furioso incluso entre ellos mismos)
+                    serie: true
+				}
+			]
+		});
+	}
+				
+	function Route($routeProvider, $ocLazyLoadProvider){
+		$routeProvider
+		.when("/", {
+			templateUrl : "main.htm"
+		})
+		.when("/mostly-fluid", {
+			templateUrl : "./app/mostly-fluid/mostly-fluid.html",
+			controller: 'RouteMostlyFluidController',
+			resolve: ResolveLoad('mostly-fluid')
+		})
+		.when("/column-drop", {
+			templateUrl : "./app/column-drop/column-drop.html",
+			controller: 'RouteColumnDropController',
+			resolve: ResolveLoad('column-drop')
+		})
+		//url para q se abra la vista nueva
+		.when("/layout-shifter", {
+			//url del html que cargar en la vista
+			templateUrl : "./app/layout-shifter/layout-shifter.html",
+			//controlador que se dispare y se aplique a la nueva vista si queres
+			controller: 'RouteLayoutShifterController',
+			//paquete de archivos que se desean cargar
+			resolve: ResolveLoad('layout-shifter')
+		})
+	}
+	
+	function ResolveLoad(module){
+		return {
+					loadModule: ['$ocLazyLoad', function ($ocLazyLoad) {
+						return $ocLazyLoad.load(module);
+					}]
+				};
+	}
+	//fin de funciones del controlador principal
+})();
+
+

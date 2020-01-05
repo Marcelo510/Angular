@@ -1,0 +1,13 @@
+.toggleSideNavButton{
+	position: fixed;
+	left: -35px;
+	top: calc(50% - 44px);
+	color: #fff;
+	background: orange;
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    -o-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+	border-radius: 20px 20px 0px 0px;
+	z-index: 1000;
+}

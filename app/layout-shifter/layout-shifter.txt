@@ -1,0 +1,6 @@
+let layoutShifterModule = angular.module('layoutShifterModule', ['ngMaterial', 'ngMessages']);
+layoutShifterModule.controller('LayoutShifterController', ['$scope', '$mdSidenav', LayoutShifterController]);
+layoutShifterModule.component('data-table', {
+				controller: function(){},
+				template: '<h1>HOLA</h1>'
+			});

@@ -1,0 +1,6 @@
+class LayoutShifterController{
+	constructor($scope, $mdSidenav) {
+		var ctrl = this;
+		ctrl.name = "layout-shifter-controller";
+	}
+}

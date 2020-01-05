@@ -1,0 +1,10 @@
+var dataTableComponent = {  
+	
+	controller: function () {
+		
+	},
+	template:[
+		'<div class="main_list_container">',
+		'</div>'
+	].join('')
+}

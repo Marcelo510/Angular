@@ -1,0 +1,71 @@
+/* Mostly Fluid */
+.mostly-fluid-container .container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.mostly-fluid-container .columna1, 
+.mostly-fluid-container .columna2, 
+.mostly-fluid-container .columna3, 
+.mostly-fluid-container .columna4, 
+.mostly-fluid-container .columna5 {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .mostly-fluid-container .columna2,
+  .mostly-fluid-container .columna3, 
+  .mostly-fluid-container .columna4, 
+  .mostly-fluid-container .columna5 {
+    width: 50%;
+  }
+}
+
+@media (min-width: 800px) {
+  .mostly-fluid-container .columna1 { width: 60%; }
+  .mostly-fluid-container .columna2 { width: 40%; }
+  .mostly-fluid-container .columna3, 
+  .mostly-fluid-container .columna4, 
+  .mostly-fluid-container .columna5 {
+    width: 33.3%;
+  }
+
+  .mostly-fluid-container .container {
+	width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.mostly-fluid-container .columna1 {
+	background: #16bffd; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #16bffd, #cb3066); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #16bffd, #cb3066); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mostly-fluid-container .columna2 {
+	background: #EECDA3;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #EF629F, #EECDA3);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #EF629F, #EECDA3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mostly-fluid-container .columna3 {
+	background: #1D4350;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #A43931, #1D4350);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #A43931, #1D4350); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mostly-fluid-container .columna4 {
+	background: #a80077;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #66ff00, #a80077);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #66ff00, #a80077); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mostly-fluid-container .columna5 {
+	background: #f7ff00;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

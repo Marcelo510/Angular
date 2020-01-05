@@ -1,0 +1,2 @@
+let columnDropModule = angular.module('column-drop', []);
+columnDropModule.controller('ColumnDropController', ColumnDropController);

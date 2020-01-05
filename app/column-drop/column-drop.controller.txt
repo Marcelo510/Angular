@@ -1,0 +1,6 @@
+class ColumnDropController{
+	constructor(){
+		var ctrl = this;
+		ctrl.name="column-drop-controller";
+	}
+}

@@ -1,0 +1,10 @@
+<table>
+	<thead>
+		<th class="animate-repeat" ng-repeat="header in $dataTable.dataHeaders">{{header}}</th>
+	</thead>
+	<tbody>
+		<tr class="animate-repeat" ng-repeat="item in $dataTable.data">{{item}}
+			<td ng-repeat="info in item">{{info}}</td>
+		</tr>
+	</tbody>
+</table>
