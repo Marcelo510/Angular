@@ -1,12 +1,19 @@
 angular.module("MiFirstApp", [])
     .controller("FirstController", function($scope, $http){
-        $http.get("http://jsonplaceholder.typicode.com/posts")
-            .success(function(data){
-                console.log(data);
-            })
-            .error(function(err){
-                           
-            });
+        $scope.nombre = "Alonso";
+        $scope.comentarios = [
+            {
+                Comentario : "Esta bueno",
+                Usuario : "Marcelo"
+            },
+            {
+                Comentario : "Otro comenta",
+                Usuario : "Rodrigo"
+            }
+        ]
+        
+        
+        
     });
 
 

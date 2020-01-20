@@ -1,0 +1,28 @@
+<html>
+<head>
+
+</head>
+<body>
+<form name="elform">
+<input type="button" onclick="PromptDemo()" value="Click para ver un mensaje personalizado" />
+<label id="laeti"></label>
+</form>
+
+
+<script type="text/javascript">
+    function PromptDemo() {
+    //Ingresamos un mensaje a mostrar
+    var mascota = prompt("¿Cuál es tu mascota favorita?", "");
+    //Detectamos si el usuario ingreso un valor
+    if (mascota != null){
+        document.getElementById("laeti").innerText = mascota;
+        //alert("Tu mascota favorita es " + mascota);
+    }
+    //Detectamos si el usuario NO ingreso un valor
+    else {
+    alert("No has ingresado una mascota");
+    }
+    }
+    </script>
+</body>
+</html>
