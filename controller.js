@@ -1,17 +1,39 @@
-angular.module("MiFirstApp", [])
-    .controller("FirstController", function($scope, $http){
+angular.module("MiFirstApp", ["LocalStorageModule"])
+    .controller("FirstController", function($scope, $http, localStorageService){
         $scope.nombre = "Alonso";
         $scope.comentarios = [
             {
-                Comentario : "Esta bueno",
-                Usuario : "Marcelo"
+                comentario: "Esta bueno",
+                usuario: "uno"
             },
             {
-                Comentario : "Otro comenta",
-                Usuario : "Rodrigo"
+                comentario: "Otro comenta",
+                usuario: "Otro"
             }
-        ]
-        
+        ];
+        $scope.agregaComentario = function(){
+            $scope.comentarios.push($scope.nuevoComentario);
+            $scope.nuevoComentario = {};
+        };
+        $http.get("https://jsonplaceholder.typicode.com/posts")
+            .success(function(data){
+                console.log(data);
+            })
+            .error(function(err){
+                console.log(err);
+        });
+        if(localStorageService.get("angular-listaMarcelo")){
+            $scope.todo = localStorageService.get("angular-listaMarcelo");
+        }
+        else{
+            $scope.todo = [];
+        };
+        $scope.addActiv = function(){
+            $scope.todo.push($scope.newActiv);
+            $scope.newActiv = {};
+            localStorageService.set("angular-listaMarcelo",$scope.todo);
+        };
+
         
         
     });
