@@ -14,7 +14,16 @@
     <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="controller.js"></script>
+    <!-- <script src="servicios.js"></script> -->
     <script src="angular-local-storage.min.js"></script>
+    <style>
+        .animated{
+            opacity: 1;
+            max-height: auto;
+            overflow: hidden;
+            transition: all 4s;
+        }
+    </style>
 </head>
 <body ng-controller="FirstController">
     <div class="container border border-dark col-md-10 ">
@@ -29,8 +38,8 @@
         <input type="text" ng-model="nuevoComentario.usuario">
         <button class="btn btn-primary" ng-click="agregaComentario()">Agrega comentario</button>
         <h3>Comentarios</h3>
-        <ul>
-            <li ng-repeat="comentario in comentarios">
+        <ul class="animated">
+            <li ng-repeat="comentario in comentarios" >
                 {{comentario.comentario}}
                 - <strong>
                     {{comentario.usuario}}
@@ -43,7 +52,7 @@
         <ul>
             <li ng-repeat="actividad in todo">
                 {{actividad.descripcion}} -
-                {{actividad.fecha}}
+                {{actividad.fecha | date: 'dd-MM-yyyy'}}
             </li>
         </ul>
         <form ng-submit="addActiv()">
@@ -54,7 +63,10 @@
         </form>
     </div>
 
+    <div ng-controller="FilterController">
 
+        {{ mi_html | removeHtml}}
+    </div>
     
     
 </body>

@@ -1,3 +1,4 @@
+var app =
 angular.module("MiFirstApp", ["LocalStorageModule"])
     .controller("FirstController", function($scope, $http, localStorageService){
         $scope.nombre = "Alonso";
@@ -33,9 +34,14 @@ angular.module("MiFirstApp", ["LocalStorageModule"])
             $scope.newActiv = {};
             localStorageService.set("angular-listaMarcelo",$scope.todo);
         };
-
-        
-        
+    });
+    app.filter("removeHtml", function(){
+        return function(texto){
+            return String(texto).replace(/<[^>]+>/gm, '');
+        }
+    })
+    app.controller("FilterController", function($scope){
+        $scope.mi_html = "<p>Quitar etiquetas</p>"
     });
 
 
