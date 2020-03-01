@@ -16,7 +16,7 @@ angular.module("MiFirstApp", ["LocalStorageModule"])
             $scope.comentarios.push($scope.nuevoComentario);
             $scope.nuevoComentario = {};
         };
-        $http.get("http://genograma.somee.com/WeatherForecast")
+        $http.get("https://localhost:44356/weatherforecast")
             .success(function(data){
                 console.log(data);
             })
@@ -39,17 +39,26 @@ angular.module("MiFirstApp", ["LocalStorageModule"])
     });
     //https://jsonplaceholder.typicode.com/posts
     app1.controller('namesCtrl', function($scope) {
-            $scope.names = [
-                'Jani',
-                'Carl',
-                'Margareth',
-                'Hege',
-                'Joe',
-                'Gustav',
-                'Birgit',
-                'Mary',
-                'Kai'
-            ];
-        });
+        $scope.names = [
+            'Jani',
+            'Carl',
+            'Margareth',
+            'Hege',
+            'Joe',
+            'Gustav',
+            'Birgit',
+            'Mary',
+            'Kai'
+        ];
+    }); 
+    app1.controller("AppCtrl", function($scope, $http){
+        $http.get("https://api.github.com/users/Marcelo510/repos")
+        .success(function(data){
+            $scope.repos = data;
+        })
+        .error(function(err){
+            console.log(err);
+        })
+    });
 
     
